@@ -1,4 +1,5 @@
 require 'httparty'
+require 'json'
 
 class Kele
   include HTTParty
@@ -12,6 +13,13 @@ class Kele
     if @auth_token.nil?
       puts "Invalid Email or Password. Please try Again."
     end
+  end
+
+  def get_me
+    url = 'https://www.bloc.io/api/v1/users/me'
+
+    response = self.class.get(url, headers: { "authorization" => @auth_token })
+    output = JSON.parse(response.body)
   end
 
 end

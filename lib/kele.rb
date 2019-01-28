@@ -16,10 +16,10 @@ class Kele
   end
 
   def get_me
-    url = 'https://www.bloc.io/api/v1/users/me'
+    #url = 'https://www.bloc.io/api/v1/users/me'
 
-    response = self.class.get(url, headers: { "authorization" => @auth_token })
-    output = JSON.parse(response.body)
+    response = self.class.get('/users/me', headers: { "authorization" => @auth_token })
+    JSON.parse(response.body)
   end
 
 end
